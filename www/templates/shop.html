@@ -1,0 +1,33 @@
+<ion-view view-title="Shop" hide-back-button="true">
+
+    <ion-nav-buttons side="right">
+    <span ui-sref="app.cart" >
+      <button class="button button-clear icon ion-android-cart white-color">
+        
+      </button>
+      <span ng-show="cart.products.length" class="cart-badge ng-hide">{{cart.products.length}}</span>
+    </span>
+    </ion-nav-buttons>
+
+  <ion-content>
+<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+
+        <ion-item ng-repeat="store in stores" 
+                 ng-click="storeSelect($index)" >
+        
+          {{store.$id }}
+        
+          <!-- <ion-option-button class="button-calm"
+                             ng-click="fav($index)">
+            Favorite
+          </ion-option-button> -->
+        
+        </ion-item>
+
+      </ion-list>
+
+</div>
+    
+    
+  </ion-content>
+</ion-view>
