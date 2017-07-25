@@ -138,13 +138,13 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
   })
 
    .state('app.sectionDetail', {
-    url: '/sections',
-
+    url: '/sections/:storeIndex',
+    
     cache : false,
     views: {
       'menuContent': {
         templateUrl: 'templates/consumer/storeSections.html',
-        controller : 'ShopCtrl'
+        controller : 'ShopDetailCtrl'
       }
     }
   })

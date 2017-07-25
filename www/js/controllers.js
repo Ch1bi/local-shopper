@@ -245,8 +245,6 @@ $scope.createUser = function(data){
 	//get reference to the stores in our database
   var storeRef = firebase.database().ref("stores")
 
-  
-  
   // In this example feeds are loaded from a json file.
   // (using "getProducts" method in BackendService, see services.js)
   // In your application you can use the same approach or load 
@@ -264,36 +262,16 @@ $scope.createUser = function(data){
 $scope.getStores = function(){
 
 $scope.stores = $firebaseArray(storeRef)
-
+console.log($scope.stores)
 
 }
 
     //loads the sections of the store
 
-    $scope.storeSelect = function(index){
+    $scope.goToStoreDetail = function(index){
+  
+      $state.go("app.sectionDetail", {storeIndex: index})
 
-      $state.go("app.sectionDetail")
-
-var theList = $firebaseArray(storeRef)
-
-theList.$loaded(function (list) {
-
-  //gets the store info based on the index
-var storeInfo =  theList[index];
-console.log(storeInfo)
-
-var storeName = storeInfo.$id
-
-// var storeSections = Object.keys(storeInfo.sections)
-// console.log(storeSections.toString())
-
-var sectionRef = firebase.database().ref("stores/storeName/sections")
-
- // we load the store sections
-  $scope.sections = $firebaseArray(sectionRef)
-  console.log(storeName)
-});
-      
     }
 
 
@@ -339,6 +317,37 @@ var sectionRef = firebase.database().ref("stores/storeName/sections")
 
   //trigger initial refresh of products
   $scope.doRefresh();
+
+})
+
+.controller('ShopDetailCtrl', function($scope, $state, $firebaseArray){
+
+  console.log($state.params.storeIndex)
+
+  var storeRef = firebase.database().ref("stores")  
+
+  var theList = $firebaseArray(storeRef)
+
+theList.$loaded(function (list) {
+
+
+  //gets the store info based on the index
+var storeInfo =  theList[$state.params.storeIndex]
+console.log(storeInfo)
+
+var storeName = storeInfo.$id.toString()
+console.log(storeName)
+
+// var storeSections = Object.keys(storeInfo.sections)
+// console.log(storeSections.toString())
+
+var sectionRef = firebase.database().ref("stores/"+storeName+"/sections")
+
+ // we load the store sections
+  $scope.sections = $firebaseArray(sectionRef)
+  console.log($scope.sections)
+});
+
 
 })
 

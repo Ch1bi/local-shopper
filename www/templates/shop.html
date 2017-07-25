@@ -1,4 +1,4 @@
-<ion-view view-title="Shop" hide-back-button="true">
+  <ion-view view-title="Shop" hide-back-button="true">
 
     <ion-nav-buttons side="right">
     <span ui-sref="app.cart" >
@@ -13,7 +13,7 @@
 <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
         <ion-item ng-repeat="store in stores" 
-                 ng-click="storeSelect($index)" >
+                 ng-click="goToStoreDetail($index)">
         
           {{store.$id }}
         
