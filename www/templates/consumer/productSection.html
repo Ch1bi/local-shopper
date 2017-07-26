@@ -1,4 +1,4 @@
-<ion-view view-title="Store Sections" hide-back-button="false">
+<ion-view view-title="Product Sections" hide-back-button="false">
 
     <ion-nav-buttons side="right">
     <span ui-sref="app.cart" >
@@ -12,15 +12,14 @@
   <ion-content>
 <ion-list>
 
-        <ion-item ng-repeat="section in sections" 
-                 ng-click="goToProducts($index)" >
+        <ion-item ng-repeat="product in products">
         
-          {{section.$id}}
-    
+          {{product.$id}}
         
         </ion-item>
 
       </ion-list>
+
     
     
   </ion-content>

@@ -149,6 +149,20 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
     }
   })
 
+
+     .state('app.productSection', {
+    url: '/productSection',
+    params:{'productIndex':null, 'store': null},
+    cache : false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/consumer/productSection.html',
+        controller : 'ProductCtrl'
+      }
+    }
+  })
+
+
   .state('app.cart', {
     url: '/cart',
     data : { auth : true },

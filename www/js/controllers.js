@@ -262,7 +262,6 @@ $scope.createUser = function(data){
 $scope.getStores = function(){
 
 $scope.stores = $firebaseArray(storeRef)
-console.log($scope.stores)
 
 }
 
@@ -322,7 +321,21 @@ console.log($scope.stores)
 
 .controller('ShopDetailCtrl', function($scope, $state, $firebaseArray){
 
-  console.log($state.params.storeIndex)
+  var storeNum = $state.params.storeIndex
+
+  $scope.goToProducts = function(index){
+
+
+      $state.go('app.productSection',{productIndex: index, store:storeNum})
+  }
+
+  $scope.$on("$ionicView.enter", function(){
+
+
+        $scope.getStoreDetail();
+    })
+
+    $scope.getStoreDetail = function(){
 
   var storeRef = firebase.database().ref("stores")  
 
@@ -330,13 +343,10 @@ console.log($scope.stores)
 
 theList.$loaded(function (list) {
 
-
-  //gets the store info based on the index
+//gets the store info based on the index
 var storeInfo =  theList[$state.params.storeIndex]
-console.log(storeInfo)
 
-var storeName = storeInfo.$id.toString()
-console.log(storeName)
+var storeName = storeInfo.$id
 
 // var storeSections = Object.keys(storeInfo.sections)
 // console.log(storeSections.toString())
@@ -345,13 +355,62 @@ var sectionRef = firebase.database().ref("stores/"+storeName+"/sections")
 
  // we load the store sections
   $scope.sections = $firebaseArray(sectionRef)
-  console.log($scope.sections)
+
 });
 
+    }
 
 })
 
-// controller for "app.cart" view
+.controller("ProductCtrl", function($scope, $state, $firebaseArray){
+
+
+  $scope.$on("$ionicView.enter", function(){
+
+    // console.log("first", $state.params.productIndex)
+    // console.log("second", $state.params.store)
+    
+        $scope.getProducts();
+    })
+
+    $scope.getProducts = function(){
+
+       
+  var storeRef = firebase.database().ref("stores")  
+
+  var theList = $firebaseArray(storeRef)
+
+  theList.$loaded(function(list) {
+
+
+  //gets the store info based on the index
+var storeInfo =  theList[$state.params.store]
+console.log(storeInfo)
+
+var storeName = storeInfo.$id
+
+var productSections = storeInfo.sections
+
+//get the keys of the sections
+var keys = Object.keys(productSections)
+
+//get the products based on section consumer tapped on
+var selection = keys[$state.params.productIndex]
+
+var productRef = firebase.database().ref("stores/" + storeName + "/sections/" +selection )
+
+ // we load the store sections
+  $scope.products = $firebaseArray(productRef)
+
+});
+
+
+
+    }
+
+})
+
+// controller for "app.cart" view 
 .controller('CartCtrl', function($scope, CartService, $ionicListDelegate) {
   
   // using the CartService to load cart from localStorage
