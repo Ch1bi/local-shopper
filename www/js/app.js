@@ -1,6 +1,6 @@
 
 
-angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'])
+angular.module('deepBlue', ['ionic', 'loginMod', 'consumerShop', 'consumerStoreSections','deepBlue.controllers', 'consumerProductSection','deepBlue.services'])
 
 .run(function($ionicPlatform, $rootScope, $timeout, $state) {
   $ionicPlatform.ready(function() {
@@ -46,7 +46,7 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
     url: '/start',
     views: {
       'menuContent': {
-        templateUrl: 'templates/start.html'
+        templateUrl: 'templates/shared/start.html'
       }
     }
   })
@@ -56,7 +56,7 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
     cached : false,
     views: {
       'menuContent': {
-        templateUrl: 'templates/login.html',
+        templateUrl: 'templates/shared/login.html',
         controller : 'LoginCtrl'
       }
     }
@@ -131,7 +131,7 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
     cache : false,
     views: {
       'menuContent': {
-        templateUrl: 'templates/shop.html',
+        templateUrl: 'templates/consumer/shop.html',
         controller : 'ShopCtrl'
       }
     }
@@ -144,7 +144,7 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
     views: {
       'menuContent': {
         templateUrl: 'templates/consumer/storeSections.html',
-        controller : 'ShopDetailCtrl'
+        controller : 'ShopSectionsCtrl'
       }
     }
   })
