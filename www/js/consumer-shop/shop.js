@@ -4,6 +4,7 @@ angular.module('consumerShop', ['deepBlue.services'])
 .controller('ShopCtrl', function($scope,$state, $ionicActionSheet, BackendService, CartService, $firebaseArray) {
 
 
+
 	//get reference to the stores in our database
   var storeRef = firebase.database().ref("stores")
 

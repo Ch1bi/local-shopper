@@ -1,18 +1,18 @@
-angular.module("consumerProductSection", [])
+angular.module("consumerProductSection", ['deepBlue.services'])
 
-.controller("ProductCtrl", function($scope, $state, $firebaseArray){
+.controller("ProductCtrl", function($scope, $state, $firebaseArray, CartService){
 
-  $scope.quantity = 0;
 
-  $scope.increaseAmount = function(){
+    $scope.cart = CartService.loadCart();
 
-    $scope.quantity ++
+    
+  $scope.addToCart = function(product){
+
+    $scope.cart.products.push(product);
+    CartService.saveCart($scope.cart);
+    
   }
 
-  $scope.decreaseAmount = function(){
-
-    $scope.quantity --
-  }
 
 
   $scope.$on("$ionicView.enter", function(){
@@ -53,6 +53,9 @@ var productRef = firebase.database().ref("stores/" + storeName + "/sections/" +s
   $scope.products = $firebaseArray(productRef)
 
 });
+
+
+
 
 
 

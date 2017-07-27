@@ -190,10 +190,6 @@ $scope.createUser = function(data){
 
 
 
-
-
-
-
 // controller for "app.cart" view 
 .controller('CartCtrl', function($scope, CartService, $ionicListDelegate) {
   
