@@ -139,7 +139,6 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
 
    .state('app.sectionDetail', {
     url: '/sections/:storeIndex',
-    
     cache : false,
     views: {
       'menuContent': {
@@ -186,8 +185,37 @@ angular.module('deepBlue', ['ionic', 'deepBlue.controllers', 'deepBlue.services'
       }
     }
   })
+
+  .state('business', {
+    url: '/business',
+    abstract: true,
+    templateUrl: 'templates/business/home.html',
+    controller: 'AppCtrl'
+  })
+
+  .state('business.inventory', {
+    url: '/inventory',
+    cache : false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/business/inventory.html',
+        controller : 'inventoryCtrl'
+      }
+    }
+  })
+
+  .state('business.orders', {
+    url: '/orders',
+    cache : false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/business/orders.html',
+        controller : 'ShopDetailCtrl'
+      }
+    }
+  })
   
   // If none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/start');
+  $urlRouterProvider.otherwise('/business/inventory');
 
 });
