@@ -231,5 +231,38 @@ $scope.createUser = function(data){
     $scope.cart = CartService.resetCart();
     $state.go('app.shop')
   }
-
 })
+
+.controller('inventoryCtrl', function($scope, $ionicModal,$firebaseArray) {
+
+  //get a reference to our database
+  var database = firebase.database();
+  
+  var storeRef = firebase.database().ref("stores")
+
+    $ionicModal.fromTemplateUrl("templates/business/modal.html", {
+    scope: $scope,
+    animation: "slide-in-up"
+  })
+  
+  .then(function(modal){
+    $scope.modal = modal;
+     console.log($scope.modal);
+  });
+
+    $scope.openModal = function() {
+    $scope.modal.show();
+  };
+
+     $scope.$on("$ionicView.enter", function(){
+
+        console.log("owner-stores ctrl running!")
+    })
+  $scope.addItem = function(add) {
+    $scope.add = {
+      category: add.category,
+      item: add.item,
+      price: add.price
+    }
+  }
+ })

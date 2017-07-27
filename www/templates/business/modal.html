@@ -1,0 +1,30 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">New Item</h1>
+        <button class="button button-positive"
+        ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="padding">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Category</span>
+                    <input type="text" ng-model="add.category"
+                    placeholder="category">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Item Name</span>
+                    <input type="text" ng-model="add.name"
+                    placeholder="name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Item Price</span>
+                    <input type="text" ng-model="add.price"
+                    placeholder="price">
+                </label>
+                <button class="button button-block button-positive"
+                ng-click="addItem()">Create New Item</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>
