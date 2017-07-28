@@ -9,6 +9,10 @@ angular.module("consumerProductSection", ['deepBlue.services'])
   $scope.addToCart = function(product){
 
     $scope.cart.products.push(product);
+    console.log($scope.cart.products)
+    console.log(product)
+    
+    
     CartService.saveCart($scope.cart);
     
   }
