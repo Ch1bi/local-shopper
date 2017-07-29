@@ -2,28 +2,33 @@ angular.module("consumerProductSection", ['deepBlue.services'])
 
 .controller("ProductCtrl", function($scope, $state, $firebaseArray, CartService){
 
+  $scope.quantity = {}
+  var counter = 0
+  
 
-    $scope.cart = CartService.loadCart();
+  $scope.cart = CartService.loadCart();
 
-    
   $scope.addToCart = function(product){
-
-    $scope.cart.products.push(product);
-    console.log($scope.cart.products)
-    console.log(product)
     
+    //counter to hold the place of the quantities in the quantity.num array in productSection.html
     
+    //push our product object to the cart array
+    $scope.cart.products.push(product)
+    
+    product.quantity = $scope.quantity.num[counter] 
+    console.log(product.quantity) 
+    console.log($scope.quantity.num[counter])   
     CartService.saveCart($scope.cart);
-    
+    counter++
+    console.log("after increment " + counter)
+
+    //toDo: Need to fix adding duplicate items. It currently come out as undefined
   }
 
 
 
   $scope.$on("$ionicView.enter", function(){
 
-    // console.log("first", $state.params.productIndex)
-    // console.log("second", $state.params.store)
-    
         $scope.getProducts();
     })
 
@@ -39,7 +44,6 @@ angular.module("consumerProductSection", ['deepBlue.services'])
 
   //gets the store info based on the index
 var storeInfo =  theList[$state.params.store]
-console.log(storeInfo)
 
 var storeName = storeInfo.$id
 
@@ -54,7 +58,25 @@ var selection = keys[$state.params.productIndex]
 var productRef = firebase.database().ref("stores/" + storeName + "/sections/" +selection)
 
  // we load the store sections
-  $scope.products = $firebaseArray(productRef)
+  // $scope.products = $firebaseArray(productRef)
+  var newList = []
+
+  var theProducts = $firebaseArray(productRef)
+
+  theProducts.$loaded(function(items){
+    //we add a quantity property to each item
+    items.forEach(function(val, idx){
+
+      val.quantity = 0;
+      newList.push(val)
+ 
+    })
+
+    $scope.products = newList
+
+
+
+  })
 
 });
 

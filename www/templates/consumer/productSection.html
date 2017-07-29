@@ -16,12 +16,12 @@
         
           <h2><strong>{{product.$id}}</strong></h2>
           
-          <!-- ${{product.$value}} -->
+           ${{product.$value}} 
 
 
   <div class="item item-input-inset">
     <label class="item-input-wrapper">
-      <input type="text" placeholder="Quantity" ng-model="itemAmount">
+      <input type="text" placeholder="Quantity" ng-model="quantity.num[$index]">
     </label>
     <button class="button button-small" ng-click="addToCart(product)">
      Add to cart
