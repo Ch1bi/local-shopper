@@ -1,24 +1,48 @@
-angular.module("consumerProductSection", ['deepBlue.services'])
+angular.module("consumerProductSection", ['deepBlue.services', 'firebase'])
 
 .controller("ProductCtrl", function($scope, $state, $firebaseArray, CartService){
 
+  //our signed in user
+  var user = firebase.auth().currentUser
+  //our database ref
+  var database = firebase.database()
+
+  //parent of the quantity model in productSection.html
   $scope.quantity = {}
+
+ //counter to hold the place of the quantities in the quantity.num array in productSection.html
   var counter = 0
   
 
   $scope.cart = CartService.loadCart();
 
   $scope.addToCart = function(product){
-    
-    //counter to hold the place of the quantities in the quantity.num array in productSection.html
-    
+
+    //create an empty object to be injected into our database
+    var obj = {}
+
+ 
     //push our product object to the cart array
     $scope.cart.products.push(product)
+    console.log(product)
     
     product.quantity = $scope.quantity.num[counter] 
-    console.log(product.quantity) 
-    console.log($scope.quantity.num[counter])   
-    CartService.saveCart($scope.cart);
+
+    CartService.saveCart($scope.cart)
+
+    console.log($scope.cart.products)
+    
+    //set the keys and values in our object
+    obj[product.$id] = []
+    obj[product.$id].push(parseInt(product.quantity))
+    obj[product.$id].push(product.$value)
+    
+    
+
+    //save to firebase database here
+    database.ref('users/'+ user.uid + '/cart')
+    .update(obj)
+
     counter++
     console.log("after increment " + counter)
 
@@ -57,8 +81,6 @@ var selection = keys[$state.params.productIndex]
 
 var productRef = firebase.database().ref("stores/" + storeName + "/sections/" +selection)
 
- // we load the store sections
-  // $scope.products = $firebaseArray(productRef)
   var newList = []
 
   var theProducts = $firebaseArray(productRef)
@@ -68,6 +90,7 @@ var productRef = firebase.database().ref("stores/" + storeName + "/sections/" +s
     items.forEach(function(val, idx){
 
       val.quantity = 0;
+      parseInt(val.quantity)
       newList.push(val)
  
     })

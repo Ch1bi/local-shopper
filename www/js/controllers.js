@@ -43,7 +43,7 @@ $scope.createUser = function(data){
 
           email:$scope.data.email,
           "firstName" :$scope.data.name,
-          "type": $scope.data.user
+          "type": $scope.data.user,
     })
 
           

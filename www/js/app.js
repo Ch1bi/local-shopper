@@ -216,6 +216,6 @@ angular.module('deepBlue', ['ionic', 'loginMod', 'consumerShop', 'consumerStoreS
   })
   
   // If none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/shop');
+  $urlRouterProvider.otherwise('/app/login');
 
 });
