@@ -2,12 +2,8 @@ angular.module("businessAddStores", [])
 
 .controller('AddStoresCtrl', function($scope, $ionicModal,$firebaseArray) {
 
-
-
-
-  var obj = {};
-
-
+  var obj = {}
+  var name = ""
 
     //get currentUser uid
     var userData = firebase.auth().currentUser.uid
@@ -16,7 +12,7 @@ angular.module("businessAddStores", [])
     //get a reference to our database
   var storeRef = firebase.database().ref("stores")
 
-  var userRef = firebase.database().ref("users/" +userData)
+  var userRef = firebase.database().ref("users/" + userData)
 
 
   //when we enter home, get user creds
@@ -28,6 +24,7 @@ angular.module("businessAddStores", [])
 
         var nameInfo = creds[1]
         console.log(nameInfo)
+        name = nameInfo.$value
     
   })
        
@@ -59,10 +56,10 @@ angular.module("businessAddStores", [])
   
 
     obj[$scope.store] = []
-
+    obj[$scope.store].push(name)
     //save to databse
 
-         storeRef.update(obj)
+    storeRef.update($scope.store)
   }
   
  })
