@@ -2,7 +2,6 @@ angular.module("businessAddStores", [])
 
 .controller('AddStoresCtrl', function($scope, $ionicModal,$firebaseArray) {
 
-  var obj = {}
   var name = ""
 
     //get currentUser uid
@@ -49,17 +48,19 @@ angular.module("businessAddStores", [])
 
  
   $scope.addStore = function(store) {
+
     $scope.store = {
     name: store.name
       
     }
-  
+    
+    var obj = {}
 
-    obj[$scope.store] = []
-    obj[$scope.store].push(name)
+    obj[$scope.store.name] = []
+    obj[$scope.store.name].push(name)
     //save to databse
 
-    storeRef.update($scope.store)
+    storeRef.update(obj)
   }
   
  })
