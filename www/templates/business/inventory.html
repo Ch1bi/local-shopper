@@ -1,24 +1,7 @@
-<!-- THIS IS THE CATEGORIES PAGE -->
 <ion-view view-title="Inventory">
  <ion-nav-buttons side="secondary">
    <button ng-click="openModal();" class="button button-icon"><i class="icon ion-ios-plus"></i></button>
  </ion-nav-buttons>
 
- <ion-content>
-     <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-
-        <ion-item ng-repeat="product in products" 
-                 >
-        
-          {{product}}
-        
-          <ion-option-button class="button-calm"
-                             ng-click="fav($index)">
-            Favorite
-          </ion-option-button>
-        
-        </ion-item>
-
-      </ion-list>
- </ion-content>
+ 
 </ion-view>
