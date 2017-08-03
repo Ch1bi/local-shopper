@@ -215,12 +215,14 @@ $scope.createUser = function(data){
 })
 
 .controller('inventoryCtrl', function($scope, $ionicModal,$firebaseArray) {
-
-  //get a reference to our database
-  var database = firebase.database();
-  
+  //get references to our database
+  var user = firebase.auth().currentUser.uid
+  var database = firebase.database().ref("users/" + user)
   var storeRef = firebase.database().ref("stores")
+  
+  var signedInUser = ""
 
+    //javascript for modal
     $ionicModal.fromTemplateUrl("templates/business/modal.html", {
     scope: $scope,
     animation: "slide-in-up"
@@ -228,22 +230,84 @@ $scope.createUser = function(data){
   
   .then(function(modal){
     $scope.modal = modal;
-     console.log($scope.modal);
+
   });
 
     $scope.openModal = function() {
     $scope.modal.show();
   };
+  //end javascript for modal
 
+  //when we enter the inventory page this is lauched
      $scope.$on("$ionicView.enter", function(){
 
-        console.log("owner-stores ctrl running!")
+          //get signed in user 
+          var userList = $firebaseArray(database)
+
+        userList.$loaded(function(list){
+
+          signedInUser = list[1].$value
+   
+          
+        })
+
     })
+
+    //end scope.on code
+
+  //when add item button is clicked, items are added to owner store
   $scope.addItem = function(add) {
+    
+    var obj = {}
+
     $scope.add = {
       category: add.category,
       item: add.item,
       price: add.price
     }
+      var store;
+     var theList = $firebaseArray(storeRef)
+
+        theList.$loaded(function(list){
+
+          console.log(list)
+          list.forEach(function(val){
+
+            //if value[0] == our user then get the store name and append data!
+            if(val[0] == signedInUser){
+
+              store = val.$id
+            var userStore = firebase.database().ref("stores/"+store)
+
+            var category = "$scope.add.category"
+            var item = $scope.add.item
+            var price = $scope.add.price
+            //save data to store here
+            var obj = {}
+            var data = {
+
+              cat:{
+              
+                item: price
+
+              }
+
+            }
+
+            obj["sections"] = data
+
+            userStore.update(obj)
+
+
+            }
+       
+          })
+
+      
+        })
+
+
+
+
   }
  })

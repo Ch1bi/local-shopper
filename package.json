@@ -1,7 +1,7 @@
 {
-  "name": "shiptrac",
+  "name": "localShopper",
   "version": "1.1.1",
-  "description": "ShipTrac: An Ionic project",
+  "description": "LocalShopper: An Ionic project",
   "dependencies": {
     "cordova-android": "^6.2.3",
     "gulp": "^3.5.6",

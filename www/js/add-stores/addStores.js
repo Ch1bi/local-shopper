@@ -1,6 +1,6 @@
 angular.module("businessAddStores", [])
 
-.controller('AddStoresCtrl', function($scope, $ionicModal,$firebaseArray) {
+.controller('AddStoresCtrl', function($scope, $ionicModal,$firebaseArray, $ionicPopup) {
 
   var name = ""
 
@@ -22,7 +22,7 @@ angular.module("businessAddStores", [])
         userCreds.$loaded(function(creds){
 
         var nameInfo = creds[1]
-        console.log(nameInfo)
+  
         name = nameInfo.$value
     
   })
@@ -31,15 +31,14 @@ angular.module("businessAddStores", [])
 
  
   
-
-    $ionicModal.fromTemplateUrl("templates/business/storeModal.html", {
+   $ionicModal.fromTemplateUrl("templates/business/storeModal.html", {
     scope: $scope,
     animation: "slide-in-up"
   })
   
   .then(function(modal){
     $scope.modal = modal;
-     console.log($scope.modal);
+     
   });
 
     $scope.openModal = function() {
@@ -59,8 +58,22 @@ angular.module("businessAddStores", [])
     obj[$scope.store.name] = []
     obj[$scope.store.name].push(name)
     //save to databse
-
     storeRef.update(obj)
+
+    userRef.update({
+
+      "store":$scope.store.name
+    })
+
+    .then(function(){
+
+     $ionicPopup.alert({
+     title: 'Add Store',
+     template: 'Store Created!'
+
+     //go to home
+   });
+    })
   }
   
  })
