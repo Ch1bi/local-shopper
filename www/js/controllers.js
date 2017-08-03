@@ -215,12 +215,16 @@ $scope.createUser = function(data){
 })
 
 .controller('inventoryCtrl', function($scope, $ionicModal,$firebaseArray) {
+
+  $scope.categories = []
+  $scope.itemName = []
+  $scope.products = []
   //get references to our database
-  var user = firebase.auth().currentUser.uid
-  var database = firebase.database().ref("users/" + user)
-  var storeRef = firebase.database().ref("stores")
+  // var user = firebase.auth().currentUser.uid
+  // var database = firebase.database().ref("users/" + user)
+  // var storeRef = firebase.database().ref("stores")
   
-  var signedInUser = ""
+  // var signedInUser = ""
 
     //javascript for modal
     $ionicModal.fromTemplateUrl("templates/business/modal.html", {
@@ -242,14 +246,25 @@ $scope.createUser = function(data){
      $scope.$on("$ionicView.enter", function(){
 
           //get signed in user 
-          var userList = $firebaseArray(database)
+        //   var userList = $firebaseArray(database)
 
-        userList.$loaded(function(list){
+        // userList.$loaded(function(list){
 
-          signedInUser = list[1].$value
+        //   signedInUser = list[1].$value
    
           
-        })
+        // })
+
+        var cats = JSON.parse(window.localStorage.getItem("categories"))
+
+          if(cats != undefined)
+      {
+  $scope.categories = cats
+  console.log(cats)
+      }
+
+
+        
 
     })
 
@@ -265,49 +280,50 @@ $scope.createUser = function(data){
       item: add.item,
       price: add.price
     }
-      var store;
-     var theList = $firebaseArray(storeRef)
 
-        theList.$loaded(function(list){
+     $scope.categories.push($scope.add.category) // push to array
+    window.localStorage.setItem("categories", JSON.stringify($scope.categories));
+  
+      // var store;
+    //  var theList = $firebaseArray(storeRef)
 
-          console.log(list)
-          list.forEach(function(val){
+        // theList.$loaded(function(list){
 
-            //if value[0] == our user then get the store name and append data!
-            if(val[0] == signedInUser){
+        //   console.log(list)
+        //   list.forEach(function(val){
 
-              store = val.$id
-            var userStore = firebase.database().ref("stores/"+store)
+        //     //if value[0] == our user then get the store name and append data!
+        //     if(val[0] == signedInUser){
 
-            var category = "$scope.add.category"
-            var item = $scope.add.item
-            var price = $scope.add.price
-            //save data to store here
-            var obj = {}
-            var data = {
+        //       store = val.$id
+        //     var userStore = firebase.database().ref("stores/"+store)
 
-              cat:{
+        //     var category = "$scope.add.category"
+        //     var item = $scope.add.item
+        //     var price = $scope.add.price
+        //     //save data to store here
+        //     var obj = {}
+        //     var data = {
+
+        //       cat:{
               
-                item: price
+        //         item: price
 
-              }
+        //       }
 
-            }
+        //     }
 
-            obj["sections"] = data
+        //     obj["sections"] = data
 
-            userStore.update(obj)
+        //     userStore.update(obj)
 
 
-            }
+        //     }
        
-          })
+        //   })
 
       
-        })
-
-
-
+        // })
 
   }
  })

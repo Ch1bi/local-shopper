@@ -3,5 +3,22 @@
    <button ng-click="openModal();" class="button button-icon"><i class="icon ion-ios-plus"></i></button>
  </ion-nav-buttons>
  
+ <ion-content>
+
+    <p ng-show="!category.length" style="text-align:center;">You haven't added inventory. Click the + to add inventory.</p>
+<ion-list>
+
+        <ion-item ng-repeat="category in categories track by $index">
+        
+       {{category}}
+   
+        
+        </ion-item>
+
+      </ion-list>
+
+    
+    
+  </ion-content>
  
 </ion-view>

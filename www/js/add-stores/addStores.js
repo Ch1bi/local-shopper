@@ -6,30 +6,30 @@ angular.module("businessAddStores", [])
   $scope.stores = []
 
 
-  // var name = ""
+  var name = ""
 
-    //get currentUser uid
-  //   var userData = firebase.auth().currentUser.uid
+   // get currentUser uid
+    var userData = firebase.auth().currentUser.uid
 
 
-  //   //get a reference to our database
-  // var storeRef = firebase.database().ref("stores")
+    //get a reference to our database
+  var storeRef = firebase.database().ref("stores")
 
-  // var userRef = firebase.database().ref("users/" + userData)
+  var userRef = firebase.database().ref("users/" + userData)
 
 
   //when we enter home, get user creds / access local storage
 
       $scope.$on("$ionicView.enter", function(){
 
-  //      userCreds = $firebaseArray(userRef)
-  //       userCreds.$loaded(function(creds){
+       userCreds = $firebaseArray(userRef)
+        userCreds.$loaded(function(creds){
 
-  //       var nameInfo = creds[1]
+        var nameInfo = creds[1]
   
-  //       name = nameInfo.$value
+        name = nameInfo.$value
     
-  // })
+  })
 
   //get local storage
   var arrStores = JSON.parse(window.localStorage.getItem("stores"))
@@ -74,27 +74,27 @@ angular.module("businessAddStores", [])
 
     //save to local storage
     
-    // var obj = {}
+    var obj = {}
 
-    // obj[$scope.store.name] = []
-    // obj[$scope.store.name].push(name)
+    obj[$scope.store.name] = []
+    obj[$scope.store.name].push(name)
     //save to databse
-  //   storeRef.update(obj)
+    storeRef.update(obj)
 
-  //   userRef.update({
+    userRef.update({
 
-  //     "store":$scope.store.name
-  //   })
+      "store":$scope.store.name
+    })
 
-  //   .then(function(){
+    .then(function(){
 
-  //    $ionicPopup.alert({
-  //    title: 'Add Store',
-  //    template: 'Store Created!'
+     $ionicPopup.alert({
+     title: 'Add Store',
+     template: 'Store Created!'
 
-  //    //go to home
-  //  });
-  //   })
+     //go to home
+   });
+    })
   }
   
  })
