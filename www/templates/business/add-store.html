@@ -9,9 +9,9 @@
     <p ng-show="!stores.length" style="text-align:center;">You haven't added any stores. Click the + to add a store.</p>
 <ion-list>
 
-        <ion-item ng-repeat="stores in stores track by $index">
+        <ion-item ng-repeat="store in stores track by $index">
         
-       
+       {{store}}
    
         
         </ion-item>

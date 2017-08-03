@@ -37,7 +37,6 @@ angular.module("consumerProductSection", ['deepBlue.services', 'firebase'])
     obj[product.$id].push(parseInt(product.quantity))
     obj[product.$id].push(product.$value)
     
-    
 
     //save to firebase database here
     database.ref('users/'+ user.uid + '/cart')
