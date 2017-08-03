@@ -9,6 +9,7 @@ angular.module('deepBlue.services', [])
   var svc = {};
 
   svc.saveCart = function(cart){
+    
     window.localStorage.setItem('cart', JSON.stringify(cart));
   };
 
@@ -32,7 +33,7 @@ angular.module('deepBlue.services', [])
       return out;
     }
     for(var i=0; i < cart.products.length; i++){
-      out += cart.products[i].price;
+      out += cart.products[i].$value * cart.products[i].quantity;
     }
     return out;
   }

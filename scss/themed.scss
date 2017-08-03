@@ -30,7 +30,7 @@
   .menu {
 
     @include ui-gradient-deepblue-reverse();
-    border-color: rgba($lighter, 0.80);
+    border-color: rgba(0, 0, 5, 0.80);
     border-right: solid white 1px;
 
     .item,

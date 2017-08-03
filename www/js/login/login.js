@@ -24,7 +24,7 @@ angular.module('loginMod', [])
 
     else if(snapshot.val().type === "business"){
 
-        $state.go("business.home") 
+        $state.go("business.stores") 
     }
  
 })

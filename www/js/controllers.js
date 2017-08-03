@@ -43,7 +43,7 @@ $scope.createUser = function(data){
 
           email:$scope.data.email,
           "firstName" :$scope.data.name,
-          "type": $scope.data.user
+          "type": $scope.data.user,
     })
 
           
@@ -83,36 +83,20 @@ $scope.createUser = function(data){
 
 // This controller is bound to the "app.account" view
 .controller('AccountCtrl', function($scope, $rootScope) {
-  
-  //readonly property is used to control editability of account form
-  $scope.readonly = true;
 
-  // #SIMPLIFIED-IMPLEMENTATION:
-  // We act on a copy of the root user
-  $scope.accountUser = angular.copy($rootScope.user);
-  var userCopy = {};
+  $scope.saveEdit = function(accountUser){
+   
+    $scope.accountUser = {
 
-  $scope.startEdit = function(){
-    $scope.readonly = false;
-    userCopy = angular.copy($scope.user);
-  };
+      email: accountUser.email,
+      store: accountUser.store,
+      zip: accountUser.zip
+    }
 
-  $scope.cancelEdit = function(){
-    $scope.readonly = true;
-    $scope.user = userCopy;
-  };
-  
-  // #SIMPLIFIED-IMPLEMENTATION:
-  // this function should call a service to update and save 
-  // the data of current user.
-  // In this case we'll just set form to readonly and copy data back to $rootScope.
-  $scope.saveEdit = function(){
-    $scope.readonly = true;
-    $rootScope.user = $scope.accountUser;
+    console.log($scope.accountUser)
   };
 
 })
-
 
 
 .controller('LoginCtrl2', function ($scope, $state, $rootScope) {
@@ -190,10 +174,6 @@ $scope.createUser = function(data){
 
 
 
-
-
-
-
 // controller for "app.cart" view 
 .controller('CartCtrl', function($scope, CartService, $ionicListDelegate) {
   
@@ -227,19 +207,22 @@ $scope.createUser = function(data){
   // you should implement this method to connect an ecommerce
   // after that the cart is reset and user is redirected to shop
   $scope.checkout = function(){
-    alert("this implementation is up to you!");
+    alert("Order successful!");
     $scope.cart = CartService.resetCart();
+    //delete cart in database and send to business side
     $state.go('app.shop')
   }
 })
 
 .controller('inventoryCtrl', function($scope, $ionicModal,$firebaseArray) {
-
-  //get a reference to our database
-  var database = firebase.database();
-  
+  //get references to our database
+  var user = firebase.auth().currentUser.uid
+  var database = firebase.database().ref("users/" + user)
   var storeRef = firebase.database().ref("stores")
+  
+  var signedInUser = ""
 
+    //javascript for modal
     $ionicModal.fromTemplateUrl("templates/business/modal.html", {
     scope: $scope,
     animation: "slide-in-up"
@@ -247,22 +230,84 @@ $scope.createUser = function(data){
   
   .then(function(modal){
     $scope.modal = modal;
-     console.log($scope.modal);
+
   });
 
     $scope.openModal = function() {
     $scope.modal.show();
   };
+  //end javascript for modal
 
+  //when we enter the inventory page this is lauched
      $scope.$on("$ionicView.enter", function(){
 
-        console.log("owner-stores ctrl running!")
+          //get signed in user 
+          var userList = $firebaseArray(database)
+
+        userList.$loaded(function(list){
+
+          signedInUser = list[1].$value
+   
+          
+        })
+
     })
+
+    //end scope.on code
+
+  //when add item button is clicked, items are added to owner store
   $scope.addItem = function(add) {
+    
+    var obj = {}
+
     $scope.add = {
       category: add.category,
       item: add.item,
       price: add.price
     }
+      var store;
+     var theList = $firebaseArray(storeRef)
+
+        theList.$loaded(function(list){
+
+          console.log(list)
+          list.forEach(function(val){
+
+            //if value[0] == our user then get the store name and append data!
+            if(val[0] == signedInUser){
+
+              store = val.$id
+            var userStore = firebase.database().ref("stores/"+store)
+
+            var category = "$scope.add.category"
+            var item = $scope.add.item
+            var price = $scope.add.price
+            //save data to store here
+            var obj = {}
+            var data = {
+
+              cat:{
+              
+                item: price
+
+              }
+
+            }
+
+            obj["sections"] = data
+
+            userStore.update(obj)
+
+
+            }
+       
+          })
+
+      
+        })
+
+
+
+
   }
  })

@@ -29,8 +29,6 @@ var storeInfo =  theList[$state.params.storeIndex]
 
 var storeName = storeInfo.$id
 
-// var storeSections = Object.keys(storeInfo.sections)
-// console.log(storeSections.toString())
 
 var sectionRef = firebase.database().ref("stores/"+storeName+"/sections")
 

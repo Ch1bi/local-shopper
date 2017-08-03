@@ -1,0 +1,59 @@
+<ion-view view-title="Account" hide-back-button="true">
+  <!-- 
+    #IMPLEMENTATION-DETAIL;
+    all view content is wrapped in a form in order to be able to leverage
+    angular 'form' directive in all the view.
+    #TIP: The form must have a "name" property set for using angular validation.
+  -->
+  <form name="accountForm">
+  
+  <!-- main content -->
+  <ion-content>
+    
+
+    <label class="item item-input">
+      <span class="input-label">Email</span>
+      <input type="text" ng-model="accountUser.email" name="email">
+    </label> 
+
+    <label class="item item-input">
+      <span class="input-label">Store Name:</span>
+      <input type="text" ng-model="accountUser.store" name="store">
+    </label>
+
+    <label class="item item-input">
+      <span class="input-label">Zip:</span>
+      <input type="text" ng-model="accountUser.zip" name="zip code">
+    </label>
+
+    <!-- this leverages angular form directive to show up in case of errors-->
+    <div class="item assertive item-text-wrap text-center">
+      Please fill in all info
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-label>Pick-Up</ion-label>
+        <ion-checkbox [(ngModel)]="pick-up"></ion-checkbox>
+      </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Delivery</ion-label>
+        <ion-checkbox [(ngModel)]="delivery"></ion-checkbox>
+      </ion-item>
+
+  </ion-content>
+
+  <!-- footer bar -->
+    <!--
+      #IMPLEMENTATION-DETAIL:
+      we switch footer bar when editing form data
+    -->
+  <ion-footer-bar class="bar bar-positive">
+    <h2 class="title">Edit info</h2>
+    <button class="button button-assertive" ng-click="saveEdit(accountUser)">Save changes</button>
+  </ion-footer-bar>
+
+  
+  </form>
+
+</ion-view>

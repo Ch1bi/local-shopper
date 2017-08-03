@@ -31,9 +31,12 @@
           we are using our custom classes here.
           see file scss/views.scss for implementation
         -->
-        <img ng-src="{{product.image}}" alt="">
-        <h2 class="title white-cxolor">{{product.title}}</h2>
-        <p>{{product.price}} $</p>
+        <!-- <img ng-src="{{product.image}}" alt=""> -->
+        <h2 class="title white-cxolor">{{product.$id}}</h2>
+        <p>quantity: {{product.quantity}}</p>        
+        <p>{{product.$value * product.quantity}} $</p>
+        
+        
         
         <!--
           #TIP: <ion-option-button> must be put into an <ion-item> and is visible only when our list is swiped. You can add more than one button here.

@@ -1,0 +1,21 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">New Store</h1>
+        <button class="button button-positive"
+        ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="padding">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Store Name:</span>
+                    <input type="text" ng-model="store.name"
+                    placeholder="Store Name">
+                </label>
+              
+                <button class="button button-block button-positive"
+                ng-click="addStore(store)">Create Store</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>
