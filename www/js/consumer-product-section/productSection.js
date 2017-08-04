@@ -30,8 +30,6 @@ angular.module("consumerProductSection", ['deepBlue.services', 'firebase'])
 
     CartService.saveCart($scope.cart)
 
-    console.log($scope.cart.products)
-    
     //set the keys and values in our object
     obj[product.$id] = []
     obj[product.$id].push(parseInt(product.quantity))
@@ -43,7 +41,6 @@ angular.module("consumerProductSection", ['deepBlue.services', 'firebase'])
     .update(obj)
 
     counter++
-    console.log("after increment " + counter)
 
     //toDo: Need to fix adding duplicate items. It currently come out as undefined
   }

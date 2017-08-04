@@ -8,8 +8,15 @@
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
 
+     <!--RoboDraft font-->
+     <link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
+
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!--Ionic Material css-->
+
+        <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -24,6 +31,10 @@
                                  
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>   
+
+    <!--Ionic Material JS-->
+
+        <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
     
     <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
@@ -49,7 +60,7 @@
     the class "deepblue-theme" on body kicks in our theme for all views
     see scss/themed.scss for implementation.
   -->
-  <body ng-app="deepBlue" class="deepblue-theme">
+  <body ng-app="deepBlue">
     <ion-nav-view></ion-nav-view>
   </body>
 </html>

@@ -326,4 +326,9 @@ $scope.createUser = function(data){
         // })
 
   }
+
+  $scope.goToProducts = function(){
+
+
+  }
  })

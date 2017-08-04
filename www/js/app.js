@@ -1,6 +1,6 @@
 
 
-angular.module('deepBlue', ['ionic', 'loginMod', 'consumerShop', 'consumerStoreSections','deepBlue.controllers', 'consumerProductSection', 'businessAddStores', 'deepBlue.services'])
+angular.module('deepBlue', ['ionic', 'ionic-material', 'loginMod', 'consumerShop', 'consumerStoreSections','deepBlue.controllers', 'consumerProductSection', 'businessAddStores', 'deepBlue.services'])
 
 .run(function($ionicPlatform, $rootScope, $timeout, $state) {
   $ionicPlatform.ready(function() {
@@ -42,14 +42,14 @@ angular.module('deepBlue', ['ionic', 'loginMod', 'consumerShop', 'consumerStoreS
     controller: 'AppCtrl'
   })
   
-  .state('app.start', {
-    url: '/start',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/shared/start.html'
-      }
-    }
-  })
+  // .state('app.start', {
+  //   url: '/start',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/shared/start.html'
+  //     }
+  //   }
+  // })
 
   .state('app.login', {
     url: '/login',
@@ -238,6 +238,6 @@ angular.module('deepBlue', ['ionic', 'loginMod', 'consumerShop', 'consumerStoreS
   })
   
   // If none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/start');
+  $urlRouterProvider.otherwise('/app/login');
 
 });

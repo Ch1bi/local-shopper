@@ -67,7 +67,7 @@ angular.module("businessAddStores", [])
       
     }
   
-    console.log(JSON.parse(window.localStorage.getItem("stores")))
+
     $scope.stores.push($scope.store.name) // push to array
     window.localStorage.setItem("stores", JSON.stringify($scope.stores));
   

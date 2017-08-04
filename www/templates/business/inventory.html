@@ -8,7 +8,7 @@
     <p ng-show="!category.length" style="text-align:center;">You haven't added inventory. Click the + to add inventory.</p>
 <ion-list>
 
-        <ion-item ng-repeat="category in categories track by $index">
+        <ion-item ng-repeat="category in categories track by $index" ng-click="goToProduct()">
         
        {{category}}
    
