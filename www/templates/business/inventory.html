@@ -5,7 +5,7 @@
  
  <ion-content>
 
-    <p ng-show="!category.length" style="text-align:center;">You haven't added inventory. Click the + to add inventory.</p>
+    <p ng-show="!categories.length" style="text-align:center;">You haven't added inventory. Click the + to add inventory.</p>
 <ion-list can-swipe="true">
 
         <ion-item ng-repeat="category in categories track by $index" ng-click="goToProduct()">

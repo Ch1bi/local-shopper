@@ -227,8 +227,8 @@ $scope.createUser = function(data){
   function showPopup(){
 
        $ionicPopup.alert({
-     title: 'Add Inventory',
-     template: 'Inventory Created!'
+     title: 'Checkout',
+     template: 'Order Placed!'
 
    });
 
