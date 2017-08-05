@@ -238,6 +238,6 @@ angular.module('deepBlue', ['ionic', 'ionic-material', 'loginMod', 'consumerShop
   })
   
   // If none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/app/cart');
 
 });

@@ -12,10 +12,11 @@
   <ion-content>
 <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
-        <ion-item ng-repeat="store in stores" 
+        <ion-item style="color:#4CAF50;" class="item balanced-100-bg" ng-repeat="store in stores" 
                  ng-click="goToStoreDetail($index)">
         
           {{store.$id }}
+          <i class="icon ion-home"></i>
           
         
           <!-- <ion-option-button class="button-calm"

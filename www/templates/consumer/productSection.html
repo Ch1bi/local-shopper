@@ -12,9 +12,9 @@
   <ion-content>
 <ion-list>
 
-        <ion-item ng-repeat="product in products track by $index">
+        <ion-item style="color:#4CAF50" class="item balanced-100-bg" ng-repeat="product in products track by $index">
         
-          <h2><strong>{{product.$id}}</strong></h2>
+          <h2 style="color:#4CAF50"><strong>{{product.$id}}</strong></h2>
           
            ${{product.$value}} 
 
@@ -23,9 +23,10 @@
     <label class="item-input-wrapper">
       <input type="text" placeholder="Quantity" ng-model="quantity.num[$index]">
     </label>
-    <button class="button button-small" ng-click="addToCart(product)">
+          <a class="button  icon-right ion-paper-airplane button-balanced" ng-click="addToCart(product)"></a>
+    <!-- <button class="button button-small" ng-click="addToCart(product)">
      Add to cart
-    </button>
+    </button> -->
   </div>
    
         
