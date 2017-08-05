@@ -2,6 +2,18 @@ angular.module("businessAddStores", [])
 
 .controller('AddStoresCtrl', function($scope, $state, $ionicModal,$firebaseArray, $ionicPopup) {
 
+  function storeCreated(){
+
+    $ionicPopup.alert({
+     title: 'Add Store',
+     template: 'Store Created!'
+   });
+
+      $scope.modal.hide()
+   $state.go("business.stores")
+
+  }
+
   $scope.removeStore = function(index){
     
     
@@ -80,34 +92,36 @@ angular.module("businessAddStores", [])
   
 
     $scope.stores.push($scope.store.name) // push to array
-    window.localStorage.setItem("stores", JSON.stringify($scope.stores));
-  
+    window.localStorage.setItem("stores", JSON.stringify($scope.stores))
+
+    storeCreated()
+    
 
     //save to local storage
     
-    var obj = {}
+    // var obj = {}
 
-    obj[$scope.store.name] = []
-    obj[$scope.store.name].push(name)
-    //save to databse
-    storeRef.update(obj)
+    // obj[$scope.store.name] = []
+    // obj[$scope.store.name].push(name)
+    // //save to databse
+    // storeRef.update(obj)
 
-    userRef.update({
+    // userRef.update({
 
-      "store":$scope.store.name
-    })
+    //   "store":$scope.store.name
+    // })
 
-    .then(function(){
+  //   .then(function(){
 
-     $ionicPopup.alert({
-     title: 'Add Store',
-     template: 'Store Created!'
+  //    $ionicPopup.alert({
+  //    title: 'Add Store',
+  //    template: 'Store Created!'
 
-     //go to home
-   });
-   $scope.modal.hide()
-   $state.go("business.stores")
-    })
+  //    //go to home
+  //  });
+
+  //   })
+
   }
   
  })

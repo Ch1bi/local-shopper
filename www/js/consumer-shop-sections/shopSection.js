@@ -2,6 +2,8 @@ angular.module("consumerStoreSections", [])
 
 .controller('ShopSectionsCtrl', function($scope, $state, $firebaseArray){
 
+    // $scope.categories = []
+
   var storeNum = $state.params.storeIndex
 
   $scope.goToProducts = function(index){
@@ -13,8 +15,19 @@ angular.module("consumerStoreSections", [])
   $scope.$on("$ionicView.enter", function(){
 
 
-        $scope.getStoreDetail();
+         $scope.getStoreDetail();
+        //  var arrCats = JSON.parse(window.localStorage.getItem("categories"))
+
+//             if(arrCats != undefined)
+//       {
+//   $scope.categories = arrCats
+  
+//       }
+        
     })
+
+    
+    
 
     $scope.getStoreDetail = function(){
 

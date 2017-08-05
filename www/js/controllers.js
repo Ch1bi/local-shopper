@@ -278,13 +278,13 @@ $scope.createUser = function(data){
           
         // })
 
-        var cats = JSON.parse(window.localStorage.getItem("categories"))
+  //       var cats = JSON.parse(window.localStorage.getItem("categories"))
 
-          if(cats != undefined)
-      {
-  $scope.categories = cats
-  console.log(cats)
-      }
+  //         if(cats != undefined)
+  //     {
+  // $scope.categories = cats
+  // console.log(cats)
+  //     }
 
 
         
