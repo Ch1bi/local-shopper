@@ -13,7 +13,7 @@ angular.module("orderSection", ['deepBlue.services'])
     if(arrOrders != undefined)
       {
   $scope.orders = arrOrders
-  console.log($scope.orders)
+  console.log($scope.orders.cart.products)
       }
 
   })
