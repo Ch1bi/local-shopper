@@ -195,23 +195,46 @@ $scope.createUser = function(data){
   }
 })
 
-.controller('CheckoutCtrl', function($scope, CartService, $state) {
+.controller('CheckoutCtrl', function($scope, $ionicPopup, CartService, $state) {
+
+  
   
   //using the CartService to load cart from localStorage
+  var orders = {}
+   var createdOrders = []
   $scope.cart = CartService.loadCart();
   $scope.getTotal = CartService.getTotal;
 
   $scope.getTotal = CartService.getTotal;
 
+  orders["cart"] = $scope.cart
+  orders["total"] = $scope.getTotal
+  createdOrders.push(orders)
+  
+  localStorage.setItem("orders",JSON.stringify(createdOrders));
+
   // #NOT-IMPLEMENTED: This method is just calling alert()
   // you should implement this method to connect an ecommerce
   // after that the cart is reset and user is redirected to shop
   $scope.checkout = function(){
-    alert("Order successful!");
+    // alert("Order successful!");
+    showPopup();
     $scope.cart = CartService.resetCart();
     //delete cart in database and send to business side
-    $state.go('app.shop')
+    $state.go('app.feed')
   }
+
+  function showPopup(){
+
+       $ionicPopup.alert({
+     title: 'Add Inventory',
+     template: 'Inventory Created!'
+
+   });
+
+
+  }
+
 })
 
 .controller('inventoryCtrl', function($scope, $state, $ionicPopup, $ionicModal, $firebaseArray) {

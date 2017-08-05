@@ -8,7 +8,7 @@
 <ion-side-menus enable-menu-with-back-views="true">
   
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-deepblue">
+    <ion-nav-bar class="bar-assertive">
       <!-- #TIP: <ion-nav-back-button> is commented out in this example,
         uncomment if you need a back button in some views.
       -->
@@ -17,8 +17,7 @@
       </ion-nav-back-button>
       -->
       <ion-nav-buttons side="left" >
-        <button class="white-color button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
+             <a class="button  icon-right ion-navicon button-assertive" menu-toggle="left"></a>
       </ion-nav-buttons>
     </ion-nav-bar>
     
@@ -32,7 +31,7 @@
       we are using our custom bar classes here
       see scss/themed.scss for implementation.
     -->
-    <ion-header-bar class="bar-deepblue-reverse bar-deepblue-borderbottom">
+   <ion-header-bar class="bar bar-header bar-balanced">
     </ion-header-bar>
   
     <ion-content>
@@ -45,8 +44,9 @@
           <img ng-src="{{user.avatar}}" class="avatar-menu">
         </ion-item>
         <ion-item menu-close class="menu-positive text-center" href="#/business/account">
-         Account <b>{{ user.email }}</b>
-        </ion-item>
+
+         <!-- Account <b>{{ user.email }}</b> -->
+        </ion-item> 
         <ion-item menu-close href="#/business/stores">
           Stores
         </ion-item>
@@ -70,9 +70,9 @@
       we choose to put a "logout" button in the footer of side menu.
       the "logout" method in contained in "AppCtrl" controller (see controllers.js)
     -->
-    <ion-footer-bar class="bar-positive">
+    <!-- <ion-footer-bar class="bar-positive">
       <button class="button button-clear white-color" ng-click="logout()" menu-close>Logout</button>
-    </ion-footer-bar>
+    </ion-footer-bar> -->
   
   </ion-side-menu>
 </ion-side-menus>

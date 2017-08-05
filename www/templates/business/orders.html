@@ -1,0 +1,23 @@
+<ion-view view-title="Orders">
+
+  <ion-content>
+
+    <ion-list>
+
+        <ion-item can-swipe="true" ng-repeat="order in orders track by $index">
+        
+       {{order}}
+
+       <ion-option-button class="button-assertive" ng-click="removeOrder($index)">Filled</ion-option-button>
+   
+        </ion-item>
+
+      </ion-list>
+
+
+    
+    
+  </ion-content>
+
+ 
+</ion-view>

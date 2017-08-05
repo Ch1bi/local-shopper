@@ -25,15 +25,15 @@
       "ion-list" to true. 
     -->  
     <ion-list can-swipe="true">  
-      <ion-item class="item item-avatar" ng-repeat="product in cart.products track by $index" >
+      <ion-item  class="item balanced-100-bg"  ng-repeat="product in cart.products track by $index" >
         <!-- 
           #IMPLEMENTATION-DETAIL:
           we are using our custom classes here.
           see file scss/views.scss for implementation
         -->
         <!-- <img ng-src="{{product.image}}" alt=""> -->
-        <h2 class="title white-cxolor">{{product.$id}}</h2>
-        <p>quantity: {{product.quantity}}</p>        
+        <h2 style="color:#4CAF50; font-weight:bold;" class="title">{{product.$id}}</h2>
+        <p >quantity: {{product.quantity}}</p>        
         <p>{{product.$value * product.quantity}} $</p>
         
         
@@ -48,7 +48,7 @@
   </ion-content>
 
   <!-- in case we have items, explain how to remove them in footer --> 
-  <ion-footer-bar class="bar" ng-class="{'bar-energized' : cart.products.length , 'bar-deepblue' : !cart.products.length}" ui-sref="{{ cart.products.length  ? 'app.checkout' : '#' }}">   
+  <ion-footer-bar class="bar" ng-class="{'bar-balanced' : cart.products.length , 'bar-deepblue' : !cart.products.length}" ui-sref="{{ cart.products.length  ? 'app.checkout' : '#' }}">   
     <h2 class="title" ng-if="cart.products.length">Checkout</h2>
   </ion-footer-bar>
    
