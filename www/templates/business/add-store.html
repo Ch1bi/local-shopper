@@ -9,9 +9,11 @@
     <p ng-show="!stores.length" style="text-align:center;">You haven't added any stores. Click the + to add a store.</p>
 <ion-list>
 
-        <ion-item ng-repeat="store in stores track by $index">
+        <ion-item can-swipe="true" ng-repeat="store in stores track by $index">
         
        {{store}}
+
+       <ion-option-button class="button-assertive" ng-click="removeStore($index)">REMOVE</ion-option-button>
    
         </ion-item>
 

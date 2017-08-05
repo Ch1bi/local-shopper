@@ -33,7 +33,7 @@ angular.module('deepBlue.services', [])
       return out;
     }
     for(var i=0; i < cart.products.length; i++){
-      out += cart.products[i].$value * cart.products[i].quantity;
+      out += Math.round(cart.products[i].$value * cart.products[i].quantity);
     }
     return out;
   }

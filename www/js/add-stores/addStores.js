@@ -1,6 +1,17 @@
 angular.module("businessAddStores", [])
 
-.controller('AddStoresCtrl', function($scope, $ionicModal,$firebaseArray, $ionicPopup) {
+.controller('AddStoresCtrl', function($scope, $state, $ionicModal,$firebaseArray, $ionicPopup) {
+
+  $scope.removeStore = function(index){
+    
+    
+ $scope.stores = JSON.parse(localStorage.getItem("stores"))
+
+ $scope.stores.splice(index, 1);
+
+ localStorage.setItem("stores",JSON.stringify($scope.stores));
+
+  }
 
 
   $scope.stores = []
@@ -94,6 +105,8 @@ angular.module("businessAddStores", [])
 
      //go to home
    });
+   $scope.modal.hide()
+   $state.go("business.stores")
     })
   }
   

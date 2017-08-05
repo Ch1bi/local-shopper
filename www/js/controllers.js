@@ -214,11 +214,34 @@ $scope.createUser = function(data){
   }
 })
 
-.controller('inventoryCtrl', function($scope, $ionicModal,$firebaseArray) {
+.controller('inventoryCtrl', function($scope, $state, $ionicPopup, $ionicModal, $firebaseArray) {
+
+  function showAlert(){
+
+    $ionicPopup.alert({
+     title: 'Add Inventory',
+     template: 'Inventory Created!'
+
+   });
+       $scope.modal.hide()
+   $state.go("business.inventory")
+
+  }
+
+    $scope.removeInv = function(index){
+    
+    
+ $scope.categories = JSON.parse(localStorage.getItem("categories"))
+
+ $scope.categories.splice(index, 1);
+
+ localStorage.setItem("categories",JSON.stringify($scope.categories));
+
+  }
 
   $scope.categories = []
-  $scope.itemName = []
-  $scope.products = []
+  // $scope.itemName = []
+  // $scope.products = []
   //get references to our database
   // var user = firebase.auth().currentUser.uid
   // var database = firebase.database().ref("users/" + user)
@@ -277,13 +300,27 @@ $scope.createUser = function(data){
 
     $scope.add = {
       category: add.category,
-      item: add.item,
+      thing: add.name,
       price: add.price
     }
 
-     $scope.categories.push($scope.add.category) // push to array
-    window.localStorage.setItem("categories", JSON.stringify($scope.categories));
+    obj.category = $scope.add.category
+    obj.item = $scope.add.thing
+    obj.price = $scope.add.price
+    
+    $scope.categories.push(obj)
+     
   
+     
+    window.localStorage.setItem("categories", JSON.stringify($scope.categories))
+
+    
+
+    console.log(window.localStorage.getItem("categories", JSON.stringify($scope.categories)))
+
+      showAlert()
+  
+    
       // var store;
     //  var theList = $firebaseArray(storeRef)
 
@@ -324,6 +361,8 @@ $scope.createUser = function(data){
 
       
         // })
+
+      
 
   }
 
