@@ -1,0 +1,24 @@
+[
+    {
+        "id" : 1,
+        "title" : "Fine Fare",
+        "date" : "August 05, 2015",
+        "image" : "sampledata/images/1.jpg",
+        "description" : "When you shop your friendly neighborhood Fine Fare you can expect to find a full service supermarket with great prices and amazing variety of products"
+    },
+    {
+        "id" : 2,
+        "title" : "C-TOWN",
+        "date" : "August 15, 2015",
+        "image" : "sampledata/images/2.jpg",
+        "description" : "With 130 stores and counting, C-Town has the largest footprint of independently owned grocery stores stores throughout the Metro-New York City area."
+    },
+    {
+        "id" : 3,
+        "title" : "Western Beef",
+        "date" : "August 3, 2015",
+        "image" : "sampledata/images/3.jpg",
+        "description" : "Western Beef consist of 28 high volume warehouse style supermarkets, operating in New York, New Jersey and Florida.  Based on the experiences and knowledge acquired over the past 30 years Western Beef has earned the slogan “We know the Neighborhood.”  It isn’t just something we say, it is something we strive for in every community we service. "
+    }
+
+]

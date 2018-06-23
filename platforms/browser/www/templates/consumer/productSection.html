@@ -1,0 +1,40 @@
+<ion-view view-title="Product Sections" hide-back-button="false">
+
+    <ion-nav-buttons side="right">
+    <span ui-sref="app.cart" >
+      <button class="button button-clear icon ion-android-cart white-color">
+        
+      </button>
+      <span ng-show="cart.products.length" class="cart-badge ng-hide">{{cart.products.length}}</span>
+    </span>
+    </ion-nav-buttons>
+
+  <ion-content>
+<ion-list>
+
+        <ion-item style="color:#4CAF50" class="item balanced-100-bg" ng-repeat="product in products track by $index">
+        
+          <h2 style="color:#4CAF50"><strong>{{product.$id}}</strong></h2>
+          
+           ${{product.$value}} 
+
+
+  <div class="item item-input-inset">
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="Quantity" ng-model="quantity.num[$index]">
+    </label>
+          <a class="button  icon-right ion-paper-airplane button-balanced" ng-click="addToCart(product)"></a>
+    <!-- <button class="button button-small" ng-click="addToCart(product)">
+     Add to cart
+    </button> -->
+  </div>
+   
+        
+        </ion-item>
+
+      </ion-list>
+
+    
+    
+  </ion-content>
+</ion-view>

@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Local Shopper",
+  "short_name": "Local Shopper",
+  "version": "com.ionicframework.shiptrac968410",
+  "description": "An app to make delivery easier!",
+  "author": "Local Shopper Team",
+  "icons": [],
+  "start_url": "index.html"
+}

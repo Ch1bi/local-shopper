@@ -1,0 +1,27 @@
+<ion-view view-title="Store Sections" hide-back-button="false">
+
+    <ion-nav-buttons side="right">
+    <span ui-sref="app.cart" >
+      <button class="button button-clear icon ion-android-cart white-color">
+        
+      </button>
+      <span ng-show="cart.products.length" class="cart-badge ng-hide">{{cart.products.length}}</span>
+    </span>
+    </ion-nav-buttons>
+
+  <ion-content>
+<ion-list >
+
+         <ion-item style="color:#4CAF50" class="item balanced-100-bg" ng-repeat="section in sections" 
+                 ng-click="goToProducts($index)" >
+        
+          {{section.$id}}
+        </ion-item> 
+
+
+
+      </ion-list>
+    
+    
+  </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view view-title="Inventory">
+ <ion-nav-buttons side="secondary">
+   <button ng-click="openModal();" class="button button-icon"><i class="icon ion-ios-plus"></i></button>
+ </ion-nav-buttons>
+ 
+ <ion-content>
+
+    <p ng-show="!categories.length" style="text-align:center;">You haven't added inventory. Click the + to add inventory.</p>
+<ion-list can-swipe="true">
+
+        <ion-item ng-repeat="category in categories track by $index" ng-click="goToProduct()">
+        
+       {{category.item}}
+   
+
+
+       <ion-option-button class="button-assertive" ng-click="removeInv($index)">REMOVE</ion-option-button
+        
+        </ion-item>
+
+      </ion-list>
+
+    
+    
+  </ion-content>
+ 
+</ion-view>
